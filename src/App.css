@@ -1,0 +1,305 @@
+body {
+  font-family: "Montserrat", sans-serif;
+  background-color: black; }
+
+h1, h2, h3 {
+  font-family: "Audiowide";
+  color: #566986; }
+
+#head-text {
+  font-family: "Yellowtail", cursive;
+  font-style: italic;
+  font-weight: 400;
+  color: #d9534f; }
+
+/* Mid-point of gradient from white to denim */
+form {
+  background-color: #acb5c3;
+  border-radius: 5px; }
+
+.modal-frame {
+    background-color: #acb5c3;
+    border-radius: 5px;
+}
+
+.auth-button {
+  color: white;
+}
+
+.reason-text {
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.subheader {
+  text-align: center; }
+
+.card-header {
+  background-color: black; }
+
+.card-body {
+  background-color: #566986; }
+
+.navbar {
+  background-color: #566986; }
+
+.dropdown-menu {
+  padding: 0; }
+
+.row-content {
+  padding: 50px 0;
+  border-bottom: 1px ridge;
+  min-height: 200px; }
+
+.row-noseparator {
+  padding: 50px 0 0 0;
+  min-height: 100px; }
+
+.logo-rectangular {
+  max-height: 100px; }
+
+.logo-square {
+  max-height: 200px; }
+
+.jumbotron {
+  margin: 0;
+  padding: 10px;
+  background-image: linear-gradient(to right, white, #566986);
+  color: white; }
+
+#tab-content {
+  border: 1px solid #DDD;
+
+  padding: 10px; }
+  
+.nav-tabs {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 800; }
+
+.map {
+  min-width: 300px;
+  min-height: 300px; }
+
+/* An update in bootstrap 4.5.1 caused the accordion headers to be blue. This cancels that */
+a, a:hover {
+  color: inherit;
+  text-decoration: none; }
+
+/* Transparent black background for carousel captions to make them more readable */
+.carousel-caption {
+  background-color: rgba(0, 0, 0, 0.5); }
+
+/* White rounded border applied to carousel*/
+.carousel {
+  border: solid white;
+  border-radius: 5px; }
+
+/* Custom style for red pause/play buttons in carousel */
+#carouselButton {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  z-index: 100; }
+
+/* Extra space between radio button labels */
+.form-check-inline label {
+  margin-right: 10px; }
+
+.form-check-inline {
+  padding-left: 20px; }
+
+.photo-gallery {
+  color: #313437;
+  background-color: #acb5c3;
+  border-radius: 5px; }
+
+.photo-gallery h2 {
+  font-weight: bold;
+  margin-bottom: 40px;
+  padding-top: 40px;
+  color: inherit; }
+
+@media (max-width: 767px) {
+  .photo-gallery h2 {
+    margin-bottom: 25px;
+    padding-top: 25px;
+    font-size: 24px; } }
+
+.photo-gallery .intro {
+  font-size: 16px;
+  max-width: 540px;
+  margin: 0 auto 40px; }
+
+.photo-gallery .intro p {
+  margin-bottom: 0; }
+
+.photo-gallery .photos {
+  padding-bottom: 20px;
+ }
+
+.photo-gallery .item {
+  padding-bottom: 30px; }
+
+/* Make the lightbox thumbnails all the same size */
+.photo-gallery img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover; }
+
+#shopping-panel {
+  background-color: #acb5c3;
+  border-radius: 5px;
+  margin-top: 50px;
+  /* Align top like other pages */ }
+
+.product-grid9, .product-grid9 .product-image9 {
+  position: relative; }
+
+.product-grid9 {
+  font-family: "Montserrat", sans-serif;
+  z-index: 1; }
+
+.product-grid9 .product-image9 a {
+  display: block; }
+
+.product-grid9 .product-image9 img {
+  width: 100%;
+  height: auto; }
+
+.product-grid9 .pic-1 {
+  opacity: 1;
+  transition: all .5s ease-out 0s; }
+
+.product-grid9:hover .pic-1 {
+  opacity: 0; }
+
+.product-grid9 .pic-2 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  transition: all .5s ease-out 0s; }
+
+.product-grid9:hover .pic-2 {
+  opacity: 1; }
+
+.product-grid9 .product-full-view {
+  color: #505050;
+  background-color: #fff;
+  font-size: 16px;
+  height: 45px;
+  width: 45px;
+  padding: 18px;
+  border-radius: 100px 0 0;
+  display: block;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transition: all .3s ease 0s; }
+
+.product-grid9 .product-full-view:hover {
+  color: #c0392b; }
+
+.product-grid9:hover .product-full-view {
+  opacity: 1; }
+
+.product-grid9 .product-content {
+  padding: 12px 12px 0;
+  overflow: hidden;
+  position: relative; }
+
+.product-content .rating {
+  padding: 0;
+  margin: 0 0 7px;
+  list-style: none; }
+
+.product-grid9 .rating {
+  font-size: 12px;
+  color: #ffd200;
+  transition: all .3s ease 0s; }
+
+.product-grid9 .rating li.disable {
+  color: rgba(0, 0, 0, 0.2); }
+
+.product-grid9 .title {
+  font-size: 16px;
+  font-weight: 400;
+  text-transform: capitalize;
+  margin: 0 0 3px;
+  transition: all .3s ease 0s; }
+
+.product-grid9 .title a {
+  color: rgba(0, 0, 0, 0.5); }
+
+.product-grid9 .title a:hover {
+  color: #c0392b; }
+
+.product-grid9 .price {
+  color: #000;
+  font-size: 17px;
+  margin: 0;
+  display: block;
+  transition: all .5s ease 0s; }
+
+.product-grid9:hover .price {
+  opacity: 0; }
+
+.product-grid9 .add-to-cart {
+  display: block;
+  color: #c0392b;
+  font-weight: 600;
+  font-size: 14px;
+  opacity: 0;
+  position: absolute;
+  left: 10px;
+  bottom: -20px;
+  transition: all .5s ease 0s; }
+
+.product-grid9:hover .add-to-cart {
+  opacity: 1;
+  bottom: 0; }
+
+.photo-news img {
+  height: 100%;
+  width: 600px;
+  object-fit: cover; }
+
+/* Formatting for the calendar on news page */
+#calendar-wrapper {
+  padding: 0 0 0 40px;
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: 1fr 1fr 1fr; }
+
+[id^=calendar],
+[id^=calendar] + h3 {
+  width: 400px; }
+
+[id^=calendar] + h3 {
+  text-align: center; }
+
+@media only screen and (max-width: 500px) {
+  #wrapper {
+    padding: 1em;
+    display: block; }
+  [id^=calendar],
+  [id^=calendar] + h3 {
+    width: 100%;
+    max-width: 400px;
+    margin: 1em auto; }
+  [id^=calendar] + h3 {
+    display: block;
+    margin-bottom: 2em; } }
+
+#reviews-wrapper {
+  padding: 40px 0 0 40px; }
+
+
+/* Add fade-in transitions to gallery tabs since "fade" option is not in reactstrap tabs */
+.tab-pane.active { 
+  animation-name: fadeIn;
+  animation-duration: 300ms;
+  animation-timing-function: linear; }
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
