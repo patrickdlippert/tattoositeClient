@@ -1,3 +1,9 @@
+This is the front-end React web application for the fictitious Bad Panda Tattoo Shop. To use this system, be sure to install the corresponding repository call tattoositeServer - the Express/MongoDB backend server that works in tandem.
+
+
+Note that all images were found on web searches
+and are not being used for commercial purposes. This is a student portfolio project.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
