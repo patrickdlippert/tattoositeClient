@@ -92,8 +92,8 @@ class Matcher extends Component {
                                     <div className="row">
                                         <div className="col text-left p-4">
                                             <ListGroup>
-                                            { match.reasons.map(reason => {
-                                                return (<ListGroupItem className='reason-text text-left'> {reason}</ListGroupItem>);
+                                            { match.reasons.map((reason, index) => {
+                                                return (<ListGroupItem key={index} className='reason-text text-left'> {reason}</ListGroupItem>);
                                                 })
                                             }
                                             </ListGroup>
