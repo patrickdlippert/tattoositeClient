@@ -35,7 +35,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
   fetchArtists: () => (fetchArtists()),
-  resetMatchForm: () => (actions.reset('matchForm')),
   fetchGalleries: () => (fetchGalleries()),
   fetchGalleryImages: () => (fetchGalleryImages()),
   fetchPromotions: () => (fetchPromotions()),
@@ -44,6 +43,7 @@ const mapDispatchToProps = {
   fetchReviews: () => (fetchReviews()),
   fetchNews: () => (fetchNews()),
   postMatchForm: (matchform) => (postMatchForm(matchform)),
+  resetMatchForm: () => (actions.reset('matchForm')),
   postFeedback: feedback => (postFeedback(feedback)),
   resetFeedbackForm: () => (actions.reset('feedbackForm')),
   loginUser: creds => (loginUser(creds)),
@@ -107,7 +107,7 @@ class Main extends Component {
           
           <Route path='/artists/:artistId' component={ArtistWithId}  />
 
-          <Route path='/matcher' render={() => <Matcher artists={this.state.artists} matches={this.props.matches.matches} postMatchForm={this.props.postMatchForm}  />} />
+          <Route path='/matcher' render={() => <Matcher artists={this.state.artists} matches={this.props.matches.matches} postMatchForm={this.props.postMatchForm} resetMatchForm={this.props.resetMatchForm} />} />
 
           <Route exact path='/gallery' render={() => <Galleries category={"styles"} galleries={this.props.galleries.galleries} galleryimages={this.props.galleryimages.galleryimages} />} />
 

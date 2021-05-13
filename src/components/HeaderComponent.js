@@ -15,6 +15,7 @@ class Header extends Component {
     };
 
     this.toggleNav = this.toggleNav.bind(this);
+    this.closeNav = this.closeNav.bind(this);
     this.toggleDropdown = this.toggleDropdown.bind(this);
     this.toggleModal = this.toggleModal.bind(this);
     this.handleLogin = this.handleLogin.bind(this);
@@ -26,6 +27,12 @@ class Header extends Component {
     this.setState({
         isNavOpen: !this.state.isNavOpen
     });
+  }
+
+  closeNav() {
+    if(this.state.isNavOpen === true) {
+        this.toggleNav();
+    }
   }
 
   toggleModal() {
@@ -101,12 +108,12 @@ class Header extends Component {
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar className="ml-auto">
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/home">
+                                    <NavLink onClick={this.closeNav} className="nav-link" to="/home">
                                         Home
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/artists">
+                                    <NavLink onClick={this.closeNav} className="nav-link" to="/artists">
                                         Artists
                                     </NavLink>
                                 </NavItem>
@@ -122,12 +129,12 @@ class Header extends Component {
                                         </DropdownToggle>
                                         <DropdownMenu left="true">
                                             <DropdownItem>
-                                                <NavLink className="nav-link text-dark" to="/gallery">
+                                                <NavLink onClick={this.closeNav} className="nav-link text-dark" to="/gallery">
                                                     Style Gallery
                                                 </NavLink>
                                             </DropdownItem>
                                             <DropdownItem>
-                                            <NavLink className="nav-link text-dark" to="/artistgallery">
+                                            <NavLink onClick={this.closeNav} className="nav-link text-dark" to="/artistgallery">
                                                     Artist Gallery
                                                 </NavLink>
                                             </DropdownItem>
@@ -136,22 +143,22 @@ class Header extends Component {
                                 </NavItem>
 
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/shop">
+                                    <NavLink onClick={this.closeNav} className="nav-link" to="/shop">
                                         Shop
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/news">
+                                    <NavLink onClick={this.closeNav} className="nav-link" to="/news">
                                         News
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/FAQ">
+                                    <NavLink onClick={this.closeNav} className="nav-link" to="/FAQ">
                                         FAQ
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/contact">
+                                    <NavLink onClick={this.closeNav} className="nav-link" to="/contact">
                                         Contact
                                     </NavLink>
                                 </NavItem>

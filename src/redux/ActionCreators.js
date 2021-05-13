@@ -317,7 +317,7 @@ export const postMatchForm = (matchform) => dispatch => {
 
     return fetch(baseUrl + 'match', {
             method: "POST",
-            body: matchform,
+            body: JSON.stringify(matchform),
             headers: { 
                 "Content-Type": "application/json"
             }

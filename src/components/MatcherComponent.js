@@ -1,57 +1,29 @@
 import React, { Component } from "react";
-import { Button, Form, FormGroup, Label, Input, Col, Modal, ModalHeader, ModalBody, ListGroup, ListGroupItem } from 'reactstrap';
+import { Button, FormGroup, Label, Col, Row, Modal, ModalHeader, ModalBody, ListGroup, ListGroupItem } from 'reactstrap';
+import { Control, Form, Errors } from 'react-redux-form';
 import { Link } from 'react-router-dom';
 import { Fade } from 'react-animation-components';
 import { baseUrl } from '../shared/baseUrl';
 
+const required = val => val && val.length;
 
 class Matcher extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            numTattoos: '0',
-            painThreshold: '2',
-            overFifty: '0',
-            isCoverUp: '0',
-            isExtension: '0',
-            isClearIdea: '1',
-            isOpenToArtist: '1',
-            isColor: '1',
-            sizeTattoo: '',
-            locationTattoo: '',
-            themeTattoo: '',
-            styleTattoo: '',
-            dateAppointment: '',
-            touched: {
-                firstName: false,
-                lastName: false,
-                phoneNum: false,
-                email: false
-            },
             isModalOpen: false,
         };
-        this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.toggleModal = this.toggleModal.bind(this);
     }
 
-    handleInputChange(event) {
-        const target = event.target;
-        const name = target.name;
-        const value = target.type === 'check' ? target.checked : target.value;
-    
-        this.setState({
-            [name]: value
-        });
-    }
-
-    handleSubmit(event) {
-        console.log('Current state is: ' + JSON.stringify(this.state));
-        //alert('Current state is: ' + JSON.stringify(this.state));
+    handleSubmit(values) {
+        console.log('Match form values: ' + JSON.stringify(values));
+        //alert('Current state is: ' + JSON.stringify(values));
         this.toggleModal();
-        this.props.postMatchForm(JSON.stringify(this.state));
-        event.preventDefault();
+        this.props.postMatchForm(values);
+        this.props.resetMatchForm();
     }
 
     toggleModal() {
@@ -124,15 +96,16 @@ class Matcher extends Component {
                 <div className="row row-content">
                     <div className="container-fluid">
 
-                        <Form className="p-sm-5" onSubmit={this.handleSubmit} >
+                        <Form className="p-sm-5" model="matchForm" onSubmit={values => this.handleSubmit(values)} >
                             {/* Number of Tattoos radio button selection group */}
-                            <FormGroup row tag="fieldset">
-                                <Label className="col-sm-5">How many tattoos do you currently have?</Label>
+                            <Row className="form-group">
+                                <Label htmlFor="numTattoos" className="col-sm-5">How many tattoos do you currently have?</Label>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="numTattoos" value="0" 
-                                            checked={this.state.numTattoos === "0" }
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                            model=".numTattoos"
+                                            name="numTattoos" value="0" 
+                                            className="form-check-input"
                                         />
                                         None
                                     </Label>
@@ -140,9 +113,10 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="numTattoos" value="1"
-                                            checked={this.state.numTattoos === "1"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                                model=".numTattoos"
+                                                name="numTattoos" value="1" 
+                                                className="form-check-input"
                                         />
                                         1-2
                                     </Label>
@@ -150,9 +124,10 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="numTattoos" value="2"
-                                            checked={this.state.numTattoos === "2"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                                model=".numTattoos"
+                                                name="numTattoos" value="2" 
+                                                className="form-check-input"
                                         />
                                         3-4
                                     </Label>
@@ -160,9 +135,10 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="numTattoos" value="3"
-                                             checked={this.state.numTattoos === "3"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                                model=".numTattoos"
+                                                name="numTattoos" value="3" 
+                                                className="form-check-input"
                                         />
                                         5-9
                                     </Label>
@@ -170,24 +146,26 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="numTattoos" value="4"
-                                            checked={this.state.numTattoos === "4"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                                model=".numTattoos"
+                                                name="numTattoos" value="4" 
+                                                className="form-check-input"
                                         />
                                         10+
                                     </Label>
                                 </FormGroup>
-                            </FormGroup>
+                            </Row>
 
                                 
                             {/* Pain Threshold radio button selection group */}
-                            <FormGroup row tag="fieldset">
-                                <Label className="col-sm-5">What is your pain threshold?</Label>
+                            <Row className="form-group">
+                                <Label htmlFor="painThreshold" className="col-sm-5">What is your pain threshold?</Label>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="painThreshold" value="0"
-                                            checked={this.state.painThreshold === "0"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio
+                                            model='.painThreshold' 
+                                            name="painThreshold" value="0"
+                                            className="form-check-input"
                                         />
                                         Very Low
                                     </Label>
@@ -195,9 +173,10 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="painThreshold" value="1"
-                                            checked={this.state.painThreshold === "1"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio
+                                            model='.painThreshold' 
+                                            name="painThreshold" value="1"
+                                            className="form-check-input"
                                         />
                                         Low
                                     </Label>
@@ -205,9 +184,10 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="painThreshold" value="2" 
-                                            checked={this.state.painThreshold === "2"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio
+                                            model='.painThreshold' 
+                                            name="painThreshold" value="2"
+                                            className="form-check-input"
                                         />
                                         Moderate
                                     </Label>
@@ -215,9 +195,10 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="painThreshold" value="3"
-                                            checked={this.state.painThreshold === "3"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio
+                                            model='.painThreshold' 
+                                            name="painThreshold" value="3"
+                                            className="form-check-input"
                                         />
                                         High
                                     </Label>
@@ -225,24 +206,26 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="painThreshold" value="4" 
-                                        checked={this.state.painThreshold === "4"}
-                                        onChange={this.handleInputChange}
-                                    />
+                                        <Control.radio
+                                            model='.painThreshold' 
+                                            name="painThreshold" value="4"
+                                            className="form-check-input"
+                                        />
                                     Very High
                                     </Label>
                                 </FormGroup>
-                            </FormGroup>
+                            </Row>
 
 
                             {/*  Age radio button selection group  */}
-                            <FormGroup row tag="fieldset">
-                                <Label className="col-sm-5">Are you over age 50?</Label>
+                            <Row className="form-group">
+                                <Label htmlFor="overFifty" className="col-sm-5">Are you over age 50?</Label>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="overFifty"  value="1"
-                                            checked={this.state.overFifty === "1"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                            model='.overFifty'
+                                            name="overFifty"  value="1"
+                                            className="form-check-input"
                                         />
                                         Yes
                                     </Label>
@@ -250,23 +233,25 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="overFifty" value="0" 
-                                            checked={this.state.overFifty === "0"}
-                                            onChange={this.handleInputChange}
-                                        /> 
+                                        <Control.radio 
+                                            model='.overFifty'
+                                            name="overFifty"  value="0"
+                                            className="form-check-input"
+                                        />
                                         No
                                     </Label>
                                 </FormGroup>
-                            </FormGroup>
+                            </Row>
 
                             {/*  Cover up radio button selection group */}
-                            <FormGroup row tag="fieldset">
-                                <Label className="col-sm-5">Is your new tattoo a cover up?</Label>
+                            <Row className="form-group">
+                                <Label htmlFor="isCoverUp" className="col-sm-5">Is your new tattoo a cover up?</Label>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isCoverUp" value="1"
-                                            checked={this.state.isCoverUp === "1"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                            model='.isCoverUp'
+                                            name="isCoverUp"  value="1"
+                                            className="form-check-input"
                                         />
                                         Yes
                                     </Label>
@@ -274,24 +259,26 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isCoverUp" value="0"  
-                                            checked={this.state.isCoverUp === "0"}
-                                            onChange={this.handleInputChange}
-                                        /> 
+                                        <Control.radio 
+                                            model='.isCoverUp'
+                                            name="isCoverUp"  value="0"
+                                            className="form-check-input"
+                                        />
                                         No
                                     </Label>
                                 </FormGroup>
-                            </FormGroup>
+                            </Row>
 
 
-                            {/*  Cover up radio button selection group */}
-                            <FormGroup row tag="fieldset">
-                                <Label className="col-sm-5">Is your new tattoo an extension of an existing tattoo?</Label>
+                            {/* Tattoo Extension radio button selection group */}
+                            <Row className="form-group">
+                                <Label htmlFor="isExtension" className="col-sm-5">Is your new tattoo an extension of an existing tattoo?</Label>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isExtension" value="1"
-                                            checked={this.state.isExtension === "1"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio
+                                            model='.isExtension' 
+                                            name="isExtension" value="1"
+                                            className="form-check-input"
                                         />
                                         Yes
                                     </Label>
@@ -299,23 +286,25 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isExtension" value="0"  
-                                            checked={this.state.isExtension === "0"}
-                                            onChange={this.handleInputChange}
-                                        /> 
+                                        <Control.radio
+                                            model='.isExtension' 
+                                            name="isExtension" value="0"
+                                            className="form-check-input"
+                                        />
                                         No
                                     </Label>
                                 </FormGroup>
-                            </FormGroup>
+                            </Row>
 
                             {/*  Clear Idea radio button selection group */}
-                            <FormGroup row tag="fieldset">
-                                <Label className="col-sm-5">I have a very clear idea of what I want</Label>
+                            <Row className="form-group">
+                                <Label htmlFor="isClearIdea" className="col-sm-5">I have a very clear idea of what I want</Label>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isClearIdea" value="1"  
-                                            checked={this.state.isClearIdea === "1"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                            model='.isClearIdea'
+                                            name="isClearIdea" value="1"  
+                                            className="form-check-input"
                                         />
                                         Yes
                                     </Label>
@@ -323,23 +312,25 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isClearIdea" value="0" 
-                                            checked={this.state.isClearIdea === "0"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                            model='.isClearIdea'
+                                            name="isClearIdea" value="0"  
+                                            className="form-check-input"
                                         />
                                         No
                                     </Label>
                                 </FormGroup>
-                            </FormGroup>
+                            </Row>
 
                             {/*   Open to artist radio button selection group */}
-                            <FormGroup row tag="fieldset">
-                                <Label className="col-sm-5">I'm open to an artist's interpretation</Label>
+                            <Row className="form-group">
+                                <Label htmlFor="isOpenToArtist" className="col-sm-5">I'm open to an artist's interpretation</Label>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isOpenToArtist" value="1"  
-                                            checked={this.state.isOpenToArtist === "1"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio
+                                            model=".isOpenToArtist"
+                                            name="isOpenToArtist" value="1"  
+                                            className="form-check-input"
                                         />
                                         Yes
                                     </Label>
@@ -347,24 +338,26 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isOpenToArtist" value="0" 
-                                            checked={this.state.isOpenToArtist === "0"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio
+                                            model=".isOpenToArtist"
+                                            name="isOpenToArtist" value="0"  
+                                            className="form-check-input"
                                         />
                                         No
                                     </Label>
                                 </FormGroup>
-                            </FormGroup>
+                            </Row>
 
 
                             {/*   Color or black & gray radio button selection group */}
-                            <FormGroup row tag="fieldset">
-                                <Label className="col-sm-5">Will your new tattoo be in color or black {'&'} gray?</Label>
+                            <Row className="form-group">
+                                <Label htmlFor="isColor" className="col-sm-5">Will your new tattoo be in color or black {'&'} gray?</Label>
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isColor" value="1"  
-                                            checked={this.state.isColor === "1"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                            model=".isColor"
+                                            name="isColor" value="1"  
+                                            className="form-check-input"
                                         />
                                         Color
                                     </Label>
@@ -372,43 +365,45 @@ class Matcher extends Component {
 
                                 <FormGroup check inline>
                                     <Label check>
-                                        <Input type="radio" name="isColor" value="0" 
-                                            checked={this.state.isColor === "0"}
-                                            onChange={this.handleInputChange}
+                                        <Control.radio 
+                                            model=".isColor"
+                                            name="isColor" value="0"  
+                                            className="form-check-input"
                                         />
                                         Black {'&'} Gray
                                     </Label>
                                 </FormGroup>
-                            </FormGroup>
+                            </Row>
 
 
                             {/* Select the size of the tattoo in form */}
-                            <FormGroup row>
+                            <Row className="form-group">
                                 <Label htmlFor="sizeTattoo" className="col-sm-5">What size will your new tattoo be?</Label>
                                 <div className="col">
-                                    <Input required type="select" id="sizeTattoo" name="sizeTattoo"
-                                        value={this.state.sizeTattoo}
-                                        onChange={this.handleInputChange}
-                                    >
+                                    <Control.select model=".sizeTattoo" name="sizeTattoo" validators={{required}} style={{width:"400px", height:"30px"}}>
                                         <option value="">Select...</option>
                                         <option value="0">Extra small (single image less than 1" x 1")</option>
                                         <option value="1">Small (single image less than 2" x 2")</option>
                                         <option value="2">Medium (single image less than 6" x 6")</option>
                                         <option value="3">Large (full sleeve or long placement)</option>
                                         <option value="4">Extra Large (full back, chest or leg)</option>
-                                    </Input>
+                                    </Control.select>
+                                    <Errors
+                                        className="text-danger"
+                                        model=".sizeTattoo"
+                                        show="touched"
+                                        component="div"
+                                        messages={{required: 'Required'}}
+                                    />
                                 </div>
-                            </FormGroup>
+                            </Row>
 
                             
                             {/* Select the location of the tattoo in form */}
-                            <FormGroup row>
+                            <Row className="form-group">
                                 <Label htmlFor="locationTattoo" className="col-sm-5">Where will your new tattoo be located?</Label>
-                                <div className="col">
-                                    <Input required type="select" id="locationTattoo" name="locationTattoo"
-                                        value={this.state.locationTattoo}
-                                        onChange={this.handleInputChange}
-                                    >
+                                <Col>
+                                    <Control.select model=".locationTattoo" name="locationTattoo" validators={{required}} style={{width:"400px", height:"30px"}}>
                                         <option value="">Select...</option>
                                         <option value="0">Wrist</option>
                                         <option value="1">Forearm</option>
@@ -425,18 +420,22 @@ class Matcher extends Component {
                                         <option value="12">Head</option>
                                         <option value="13">Face</option>
                                         <option value="14">Other</option>
-                                    </Input>
-                                </div>
-                            </FormGroup>
+                                    </Control.select>
+                                    <Errors
+                                        className="text-danger"
+                                        model=".locationTattoo"
+                                        show="touched"
+                                        component="div"
+                                        messages={{required: 'Required'}}
+                                    />
+                                </Col>
+                            </Row>
 
                             {/* Select the theme of the tattoo in form */}
-                            <FormGroup row>
+                            <Row className="form-group">
                                 <Label htmlFor="themeTattoo" className="col-sm-5">What is the theme of your new tattoo?</Label>
                                 <div className="col">
-                                    <Input required type="select" id="themeTattoo" name="themeTattoo"
-                                        value={this.state.themeTattoo}
-                                        onChange={this.handleInputChange}
-                                    >
+                                    <Control.select model=".themeTattoo" name="themeTattoo" validators={{required}} style={{width:"400px", height:"30px"}}>
                                         <option value="">Select...</option>
                                         <option value="0">Written words</option>
                                         <option value="1">Landscapes</option>
@@ -453,19 +452,23 @@ class Matcher extends Component {
                                         <option value="12">Musical</option>
                                         <option value="13">History</option>
                                         <option value="14">Other</option>
-                                    </Input>
+                                    </Control.select>
+                                    <Errors
+                                        className="text-danger"
+                                        model=".themeTattoo"
+                                        show="touched"
+                                        component="div"
+                                        messages={{required: 'Required'}}
+                                    />
                                 </div>
-                            </FormGroup>
+                            </Row>
 
 
                             {/* Select the style of the tattoo in form */}
-                            <FormGroup row>
+                            <Row className="form-group">
                                 <Label htmlFor="styleTattoo" className="col-sm-5">What style will your new tattoo be done in?</Label>
                                 <div className="col">
-                                    <Input required type="select" id="styleTattoo" name="styleTattoo"
-                                        value={this.state.styleTattoo}
-                                        onChange={this.handleInputChange}
-                                    >
+                                    <Control.select model=".styleTattoo" name="styleTattoo" validators={{required}} style={{width:"400px", height:"30px"}}>
                                         <option value="">Select...</option>
                                         <option value="0">American Traditional</option>
                                         <option value="1">Neo Traditional</option>
@@ -479,29 +482,41 @@ class Matcher extends Component {
                                         <option value="9">Surrealism</option>
                                         <option value="10">Watercolor</option>
                                         <option value="11">Other</option>
-                                    </Input>
+                                    </Control.select>
+                                    <Errors
+                                        className="text-danger"
+                                        model=".styleTattoo"
+                                        show="touched"
+                                        component="div"
+                                        messages={{required: 'Required'}}
+                                    />
                                 </div>
-                            </FormGroup>
+                            </Row>
 
                             {/* Select a desired appointment date in the modal reservation form  */}
+                            
                             <FormGroup row>
-                                <Label required htmlFor="dateAppointment" className="col-sm-5">Desired appointment date</Label>
+                                <Label htmlFor="dateAppointment" className="col-sm-5">Desired appointment date</Label>
                                 <div className="col">
-                                    <Input required type="date" id="dateAppointment" name="dateAppointment"
-                                        value={this.state.dateAppointment}
-                                        onChange={this.handleInputChange}
+                                    <Control type="date" model=".dateAppointment" name="dateAppointment"  validators={{required}} />
+                                    <Errors
+                                        className="text-danger"
+                                        model=".dateAppointment"
+                                        show="touched"
+                                        component="div"
+                                        messages={{required: 'Required'}}
                                     />
                                 </div>
                             </FormGroup>
+                
 
-
-                            <FormGroup row>
+                            <Row className="form-group">
                                 <Col>
                                     <Button type="submit" color="danger">
                                         Submit
                                     </Button>
                                 </Col>
-                            </FormGroup>
+                            </Row>
                         </Form>
                     </div>
 
