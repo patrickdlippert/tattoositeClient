@@ -379,8 +379,8 @@ class Matcher extends Component {
                             {/* Select the size of the tattoo in form */}
                             <Row className="form-group">
                                 <Label htmlFor="sizeTattoo" className="col-sm-5">What size will your new tattoo be?</Label>
-                                <div className="col">
-                                    <Control.select model=".sizeTattoo" name="sizeTattoo" validators={{required}} style={{width:"400px", height:"30px"}}>
+                                <Col>
+                                    <Control.select model=".sizeTattoo" name="sizeTattoo" validators={{required}} style={{width:"100%", height:"30px"}}>
                                         <option value="">Select...</option>
                                         <option value="0">Extra small (single image less than 1" x 1")</option>
                                         <option value="1">Small (single image less than 2" x 2")</option>
@@ -395,15 +395,15 @@ class Matcher extends Component {
                                         component="div"
                                         messages={{required: 'Required'}}
                                     />
-                                </div>
+                                </Col>
                             </Row>
 
                             
                             {/* Select the location of the tattoo in form */}
                             <Row className="form-group">
                                 <Label htmlFor="locationTattoo" className="col-sm-5">Where will your new tattoo be located?</Label>
-                                <Col>
-                                    <Control.select model=".locationTattoo" name="locationTattoo" validators={{required}} style={{width:"400px", height:"30px"}}>
+                                <Col> 
+                                    <Control.select model=".locationTattoo" name="locationTattoo" validators={{required}} style={{width:"100%", height:"30px"}}>
                                         <option value="">Select...</option>
                                         <option value="0">Wrist</option>
                                         <option value="1">Forearm</option>
@@ -434,8 +434,8 @@ class Matcher extends Component {
                             {/* Select the theme of the tattoo in form */}
                             <Row className="form-group">
                                 <Label htmlFor="themeTattoo" className="col-sm-5">What is the theme of your new tattoo?</Label>
-                                <div className="col">
-                                    <Control.select model=".themeTattoo" name="themeTattoo" validators={{required}} style={{width:"400px", height:"30px"}}>
+                                <Col>
+                                    <Control.select model=".themeTattoo" name="themeTattoo" validators={{required}} style={{width:"100%", height:"30px"}}>
                                         <option value="">Select...</option>
                                         <option value="0">Written words</option>
                                         <option value="1">Landscapes</option>
@@ -460,15 +460,15 @@ class Matcher extends Component {
                                         component="div"
                                         messages={{required: 'Required'}}
                                     />
-                                </div>
+                                </Col>
                             </Row>
 
 
                             {/* Select the style of the tattoo in form */}
                             <Row className="form-group">
                                 <Label htmlFor="styleTattoo" className="col-sm-5">What style will your new tattoo be done in?</Label>
-                                <div className="col">
-                                    <Control.select model=".styleTattoo" name="styleTattoo" validators={{required}} style={{width:"400px", height:"30px"}}>
+                                <Col>
+                                    <Control.select model=".styleTattoo" name="styleTattoo" validators={{required}} style={{width:"100%", height:"30px"}}>
                                         <option value="">Select...</option>
                                         <option value="0">American Traditional</option>
                                         <option value="1">Neo Traditional</option>
@@ -490,14 +490,14 @@ class Matcher extends Component {
                                         component="div"
                                         messages={{required: 'Required'}}
                                     />
-                                </div>
+                                </Col>
                             </Row>
 
                             {/* Select a desired appointment date in the modal reservation form  */}
                             
                             <FormGroup row>
                                 <Label htmlFor="dateAppointment" className="col-sm-5">Desired appointment date</Label>
-                                <div className="col">
+                                <Col>
                                     <Control type="date" model=".dateAppointment" name="dateAppointment"  validators={{required}} />
                                     <Errors
                                         className="text-danger"
@@ -506,7 +506,7 @@ class Matcher extends Component {
                                         component="div"
                                         messages={{required: 'Required'}}
                                     />
-                                </div>
+                                </Col>
                             </FormGroup>
                 
 
