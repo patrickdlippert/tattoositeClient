@@ -66,7 +66,7 @@ class Header extends Component {
                     <div className="container">
                         <div className="row align-items-center">
                             <div className="col-md-6">
-                                <img className="logo-rectangular" src="/assets/images/BadPandaRectLogo.png" alt="Bad Panda Logo"></img>
+                                <img className="logo-rectangular" src="/images/BadPandaRectLogo.png" alt="Bad Panda Logo"></img>
                             </div>
                             <div className="col align-self-center">
                                     <h2 className="d-none d-sm-block" id="head-text">The best tattoos in the Pacific Northwest!</h2>
@@ -103,7 +103,7 @@ class Header extends Component {
 
                 <Navbar dark sticky="top" expand="md">
                     <div className="container">
-                        <NavbarBrand className="mr-auto d-md-none" href="/"><img src="/assets/images/bad_panda_name.png" height="25" alt="Bad Panda Logo" /> </NavbarBrand>
+                        <NavbarBrand className="mr-auto d-md-none" href="/"><img src="/images/bad_panda_name.png" height="25" alt="Bad Panda Logo" /> </NavbarBrand>
                         <NavbarToggler onClick={this.toggleNav} />
                         <Collapse isOpen={this.state.isNavOpen} navbar>
                             <Nav navbar className="ml-auto">

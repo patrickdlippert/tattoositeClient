@@ -34,7 +34,7 @@ function Faq({faqitems}) {
                         </p>
                     </div>
                     <div className="col-sm-6">
-                        <img className="img-fluid border" src="/assets/images/questionmark.png" alt="Question mark face" />
+                        <img className="img-fluid border" src="/images/questionmark.png" alt="Question mark face" />
                     </div>
                     <RenderQuestions faqitems={faqitems} />
                 </div>

@@ -33,7 +33,7 @@ class Home extends Component {
                     <div className="row row-content align-items-center">
                         <div className="col-sm-4">
                             <Card className="h-100 my-2">
-                                <CardImg top src="/assets/images/AboutYou.png" alt="About You Pic" />
+                                <CardImg top src="/images/AboutYou.png" alt="About You Pic" />
                                 <CardBody className="text-center text-light">
      
                                     <CardTitle tag="h5">Tell us about you</CardTitle>
@@ -50,7 +50,7 @@ class Home extends Component {
 
                         <div className="col-sm-4">
                             <Card className="h-100 my-2">
-                                <CardImg top src="/assets/images/WhatInspires.png" alt="What Inspires Pic" />
+                                <CardImg top src="/images/WhatInspires.png" alt="What Inspires Pic" />
                                 <CardBody className="text-center text-light">
      
                                     <CardTitle tag="h5">What inspires you?</CardTitle>
@@ -66,7 +66,7 @@ class Home extends Component {
 
                         <div className="col-sm-4">
                             <Card className="h-100 my-2">
-                                <CardImg top src="/assets/images/AboutUs.png" alt="About Us Pic" />
+                                <CardImg top src="/images/AboutUs.png" alt="About Us Pic" />
                                 <CardBody className="text-center text-light">
      
                                     <CardTitle tag="h5">What inspires us</CardTitle>
@@ -87,10 +87,10 @@ class Home extends Component {
 
                     <div className="row row-content align-items-center">
                         <div className="col-sm-4">
-                                <img className="d-flex img-thumbnail" src="/assets/images/ShopExterior.png" alt="Shop Exterior" />
+                                <img className="d-flex img-thumbnail" src="/images/ShopExterior.png" alt="Shop Exterior" />
                         </div>
                         <div className="col-sm-4">
-                                <img className="d-flex img-thumbnail" src="/assets/images/ShopInterior.png" alt="Shop Interior" />
+                                <img className="d-flex img-thumbnail" src="/images/ShopInterior.png" alt="Shop Interior" />
                         </div>
                                     
                         <div className="col-sm-4">

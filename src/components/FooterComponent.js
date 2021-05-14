@@ -11,7 +11,7 @@ function Footer(props) {
                             <div className="row">         
 
                                 <div className="col-xl-6 col-md-4 col-sm-5 col-12 mx-auto">
-                                    <img src="/assets/images/BadPandaSquareLogo.png" className="logo-square" alt="Bad Panda Logo" />
+                                    <img src="/images/BadPandaSquareLogo.png" className="logo-square" alt="Bad Panda Logo" />
                                 </div>
 
                                 <div className="col-xl-3 col-md-4 col-sm-3 col-12">
