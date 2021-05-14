@@ -118,7 +118,7 @@ class Header extends Component {
                                     </NavLink>
                                 </NavItem>
                                 <NavItem>
-                                    <NavLink className="nav-link" to="/matcher">
+                                    <NavLink onClick={this.closeNav} className="nav-link" to="/matcher">
                                         Matcher
                                     </NavLink>
                                 </NavItem>

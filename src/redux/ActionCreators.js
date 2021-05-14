@@ -4,7 +4,7 @@ import { baseUrl } from '../shared/baseUrl';
 export const fetchArtists = () => dispatch => {
     dispatch(artistsLoading());
 
-    return fetch(baseUrl + 'artists')
+    return fetch(baseUrl + '/artists')
         .then(response => {
                 if(response.ok) {
                     return response;
@@ -42,7 +42,7 @@ export const addArtists = artists => ({
 export const fetchGalleries = () => dispatch => {
     dispatch(galleriesLoading());
 
-    return fetch(baseUrl + 'galleries')
+    return fetch(baseUrl + '/galleries')
         .then(response => {
                 if(response.ok) {
                     return response;
@@ -83,7 +83,7 @@ export const addGalleries = galleries => ({
 export const fetchGalleryImages = () => dispatch => {
     dispatch(galleryimagesLoading());
 
-    return fetch(baseUrl + 'galleryimages')
+    return fetch(baseUrl + '/galleryimages')
         .then(response => {
                 if(response.ok) {
                     return response;
@@ -124,7 +124,7 @@ export const addGalleryimages = galleryimages => ({
 export const fetchBillboards = () => dispatch => {
     dispatch(billboardsLoading());
 
-    return fetch(baseUrl + 'billboards')
+    return fetch(baseUrl + '/billboards')
         .then(response => {
                 if(response.ok) {
                     return response;
@@ -162,7 +162,7 @@ export const addBillboards = billboards => ({
 export const fetchReviews = () => dispatch => {
     dispatch(reviewsLoading());
 
-    return fetch(baseUrl + 'reviews')
+    return fetch(baseUrl + '/reviews')
         .then(response => {
                 if(response.ok) {
                     return response;
@@ -201,7 +201,7 @@ export const addReviews = reviews => ({
 export const fetchShopping = () => dispatch => {
     dispatch(shoppingLoading());
 
-    return fetch(baseUrl + 'shopping')
+    return fetch(baseUrl + '/shopping')
         .then(response => {
                 if(response.ok) {
                     return response;
@@ -239,7 +239,7 @@ export const addShopping = shopping => ({
 export const fetchPromotions = () => dispatch => {
     dispatch(promotionsLoading());
 
-    return fetch(baseUrl + 'promotions')
+    return fetch(baseUrl + '/promotions')
         .then(response => {
                 if(response.ok) {
                     return response;
@@ -277,7 +277,7 @@ export const addPromotions = promotions => ({
 export const fetchNews = () => dispatch => {
     dispatch(newsLoading());
 
-    return fetch(baseUrl + 'news')
+    return fetch(baseUrl + '/news')
         .then(response => {
                 if(response.ok) {
                     return response;
@@ -315,7 +315,7 @@ export const addNews = news => ({
 
 export const postMatchForm = (matchform) => dispatch => {
 
-    return fetch(baseUrl + 'match', {
+    return fetch(baseUrl + '/match', {
             method: "POST",
             body: JSON.stringify(matchform),
             headers: { 
@@ -349,7 +349,7 @@ export const addMatches = matches => ({
 
 export const postFeedback = feedback => () => {
     const bearer = 'Bearer ' + localStorage.getItem('token');
-    return fetch(baseUrl + 'feedback', {
+    return fetch(baseUrl + '/feedback', {
         method: 'POST',
         body: JSON.stringify(feedback),
         headers: {
@@ -407,7 +407,7 @@ export const loginUser = creds => dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds))
 
-    return fetch(baseUrl + 'users/login', {
+    return fetch(baseUrl + '/users/login', {
         method: 'POST',
         headers: { 
             'Content-Type': 'application/json' 
