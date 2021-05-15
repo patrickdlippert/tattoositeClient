@@ -22,8 +22,14 @@ form {
     border-radius: 5px;
 }
 
+.auth-group {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .auth-button {
   color: white;
+  font-size: 12px;
 }
 
 .reason-text {

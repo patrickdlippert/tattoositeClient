@@ -5,45 +5,60 @@ import { NavLink } from 'react-router-dom';
 
 class Header extends Component {
 
-  constructor(props) {
-    super(props);
+    constructor(props) {
+        super(props);
 
-    this.state = {
-        isNavOpen: false,
-        isModalOpen: false,
-        isDropdownOpen: false
-    };
+        this.state = {
+            isNavOpen: false,
+            isLoginModalOpen: false,
+            isNewAccountModalOpen: false,
+            isDropdownOpen: false
+        };
 
-    this.toggleNav = this.toggleNav.bind(this);
-    this.closeNav = this.closeNav.bind(this);
-    this.toggleDropdown = this.toggleDropdown.bind(this);
-    this.toggleModal = this.toggleModal.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
-    this.handleLogout = this.handleLogout.bind(this);
-
-  }
-
-  toggleNav() {
-    this.setState({
-        isNavOpen: !this.state.isNavOpen
-    });
-  }
-
-  closeNav() {
-    if(this.state.isNavOpen === true) {
-        this.toggleNav();
+        this.toggleNav = this.toggleNav.bind(this);
+        this.closeNav = this.closeNav.bind(this);
+        this.toggleDropdown = this.toggleDropdown.bind(this);
+        this.toggleLoginModal = this.toggleLoginModal.bind(this);
+        this.toggleNewAccountModal = this.toggleNewAccountModal.bind(this);
+        this.handleLogin = this.handleLogin.bind(this);
+        this.handleLogout = this.handleLogout.bind(this);
+        this.handleNewAccount = this.handleNewAccount.bind(this);
     }
-  }
 
-  toggleModal() {
-    this.setState({
-        isModalOpen: !this.state.isModalOpen
-    });
-}
+    toggleNav() {
+        this.setState({
+            isNavOpen: !this.state.isNavOpen
+        });
+    }
+
+    closeNav() {
+        if (this.state.isNavOpen === true) {
+            this.toggleNav();
+        }
+    }
+
+    toggleLoginModal() {
+        this.setState({
+            isLoginModalOpen: !this.state.isLoginModalOpen
+        });
+    }
+
+    toggleNewAccountModal() {
+        this.setState({
+            isNewAccountModalOpen: !this.state.isNewAccountModalOpen
+        });
+    }
 
     handleLogin(event) {
-        this.toggleModal();
+        this.toggleLoginModal();
         this.props.loginUser({ username: this.username.value, password: this.password.value });
+        event.preventDefault();
+
+    }
+
+    handleNewAccount(event) {
+        this.toggleNewAccountModal();
+        this.props.createUser({ username: this.username.value, password: this.password.value, firstname: this.firstname.value, lastname: this.lastname.value });
         event.preventDefault();
 
     }
@@ -52,11 +67,11 @@ class Header extends Component {
         this.props.logoutUser();
     }
 
-  toggleDropdown() {
-    this.setState({
-        isDropdownOpen: !this.state.isDropdownOpen
-    });
-  }
+    toggleDropdown() {
+        this.setState({
+            isDropdownOpen: !this.state.isDropdownOpen
+        });
+    }
 
     render() {
         return(
@@ -75,22 +90,35 @@ class Header extends Component {
             
                             { !this.props.auth.isAuthenticated 
                                 ?
-                                <Button className="float-right auth-button" outline size="sm" onClick={this.toggleModal}>
-                                    <i className="fa fa-sign-in fa-lg" /> Login
-                                    {this.props.auth.isFetching 
-                                        ? <span className="fa fa-spinner fa-pulse fa-fw" />
-                                        : null
-                                    }
+                                <div className="auth-group">
+                                    <Button className="auth-button" outline size="sm" color="link" onClick={this.toggleLoginModal}>
+                                        <i className="fa fa-sign-in fa-lg" /> Sign in
+                                        {this.props.auth.isFetching 
+                                            ? <span className="fa fa-spinner fa-pulse fa-fw" />
+                                            : null
+                                        }
+                                    </Button>
+                                    <span> | </span>
+                                    <Button className="auth-button" outline size="sm" color="link" onClick={this.toggleNewAccountModal}>
+                                        New Account
+                                        {this.props.auth.isFetching 
+                                            ? <span className="fa fa-spinner fa-pulse fa-fw" />
+                                            : null
+                                        }
                                 </Button>
+                                </div>
                                 :
-                                <div>
-                                    <Button className="float-right auth-button" outline size="sm" onClick={this.handleLogout}>
+                                <div className="auth-group">
+                                    <Button className="auth-button" outline size="sm" color="link" onClick={this.handleLogout}>
                                         <span className="fa fa-sign-out fa-lg"></span> Logout
                                         {this.props.auth.isFetching 
                                             ? <span className="fa fa-spinner fa-pulse fa-fw"/>
                                             : null
                                         }
                                     </Button>
+                                    <span> | </span>
+                                    <div className="auth-button p-1">
+                                    <i className="far fa-user-circle fa-lg" /> {this.props.auth.user.username}</div>
                                 </div>
                             }
                             </div>  
@@ -170,8 +198,9 @@ class Header extends Component {
                     </div>
             </Navbar>
 
-            <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Login</ModalHeader>
+            {/* Modal for user login */}
+            <Modal isOpen={this.state.isLoginModalOpen} toggle={this.toggleLoginModal}>
+                    <ModalHeader toggle={this.toggleLoginModal}>Login</ModalHeader>
                     <ModalBody className="modal-frame">
                         <Form onSubmit={this.handleLogin}>
                             <FormGroup>
@@ -192,6 +221,36 @@ class Header extends Component {
                                 </Label>
                             </FormGroup>
                             <Button type="submit" value="submit" color="danger">Login</Button>
+                        </Form>
+                    </ModalBody>
+                </Modal>
+
+                {/* Modal for user to create a new account */}
+                <Modal isOpen={this.state.isNewAccountModalOpen} toggle={this.toggleNewAccountModal}>
+                    <ModalHeader toggle={this.toggleNewAccountModal}>Create an account</ModalHeader>
+                    <ModalBody className="modal-frame">
+                        <Form onSubmit={this.handleNewAccount}>
+                            <FormGroup>
+                                <Label htmlFor="username">Username</Label>
+                                <Input type="text" id="username" name="username"
+                                    innerRef={input => this.username = input} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="password">Password</Label>
+                                <Input type="password" id="password" name="password"
+                                    innerRef={input => this.password = input} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="firstname">First name</Label>
+                                <Input type="text" id="firstname" name="firstname"
+                                    innerRef={input => this.firstname = input} />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label htmlFor="lastname">Last name</Label>
+                                <Input type="lastname" id="lastname" name="lastname"
+                                    innerRef={input => this.lastname = input} />
+                            </FormGroup>
+                            <Button type="submit" value="submit" color="danger">Create Account</Button>
                         </Form>
                     </ModalBody>
                 </Modal>

@@ -14,7 +14,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 import { FAQ } from '../shared/faq';
-import { fetchArtists, fetchGalleries, fetchGalleryImages, fetchPromotions, fetchBillboards, fetchShopping, fetchReviews, fetchNews, postMatchForm, postFeedback, loginUser, logoutUser } from '../redux/ActionCreators';
+import { fetchArtists, fetchGalleries, fetchGalleryImages, fetchPromotions, fetchBillboards, fetchShopping, fetchReviews, fetchNews, postMatchForm, postFeedback, loginUser, logoutUser, createUser } from '../redux/ActionCreators';
 import ScrollToTop from './ScrollToTop';
 
 const mapStateToProps = state => {
@@ -47,7 +47,8 @@ const mapDispatchToProps = {
   postFeedback: feedback => (postFeedback(feedback)),
   resetFeedbackForm: () => (actions.reset('feedbackForm')),
   loginUser: creds => (loginUser(creds)),
-  logoutUser: () => (logoutUser())
+  logoutUser: () => (logoutUser()),
+  createUser: creds => (createUser(creds))
 };
 
 
@@ -98,6 +99,7 @@ class Main extends Component {
         <Header auth={this.props.auth}  
           loginUser={this.props.loginUser} 
           logoutUser={this.props.logoutUser}
+          createUser={this.props.createUser}
         />
         <ScrollToTop />
         <Switch>

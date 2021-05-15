@@ -372,7 +372,8 @@ export const postFeedback = feedback => () => {
     .then(response => response.json())
     .then(response => {
         console.log('Feedback:', response);
-        alert('Thank you for your feedback!\n' + JSON.stringify(response));
+        //alert('Thank you for your feedback!\n' + JSON.stringify(response));
+        alert('Thank you for your feedback!');
     })
     .catch(error => {
         console.log('Feedback:', error.message);
@@ -461,3 +462,53 @@ export const logoutUser = () => dispatch => {
     localStorage.removeItem('creds');
     dispatch(receiveLogout())
 }
+
+
+export const receiveCreate = response => {
+    return {
+        type: ActionTypes.CREATE_SUCCESS,
+        token: response.token
+    }
+}
+export const createError = message => {
+    alert('Could not create an account with this username.');
+    return {
+        type: ActionTypes.CREATE_FAILURE,
+        message
+    }
+}
+// Create User Account
+export const createUser = creds => dispatch => {
+    // We dispatch requestLogin to kickoff the call to the API
+    //dispatch(requestLogin(creds))
+
+    return fetch(baseUrl + 'users/signup', {
+        method: 'POST',
+        headers: { 
+            'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify(creds)
+    })
+    .then(response => {
+            if (response.ok) {
+                return response;
+            } else {
+                const error = new Error(`Error ${response.status}: ${response.statusText}`);
+                error.response = response;
+                throw error;
+            }
+        },
+        error => { throw error; }
+    )
+    .then(response => response.json())
+    .then(response => {
+        if (response.success) {
+            dispatch(receiveCreate(response));
+        } else {
+            const error = new Error('Error ' + response.status);
+            error.response = response;
+            throw error;
+        }
+    })
+    .catch(error => dispatch(createError(error.message)))
+};
