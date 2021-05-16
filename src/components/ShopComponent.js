@@ -11,7 +11,7 @@ function RenderShopping({shopitems}) {
                 <div className="row row-noseparator">
                     {shopitems.map(shopitem => {
                         return (
-                            <div className="col-md-3 col-sm-6 mb-4" key={shopitem.id}>
+                            <div className="col-md-3 col-sm-6 mb-4" key={shopitem._id}>
                                 <div className="product-grid9">
                                     <div className="product-image9">
                                         <Link to='/shop'>

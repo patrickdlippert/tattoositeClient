@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
-import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, Modal, ModalHeader, ModalBody, Form, FormGroup, Input, Label } from 'reactstrap';
+import { Nav, Navbar, NavbarBrand, NavbarToggler, Collapse, NavItem, Jumbotron, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button, Modal, ModalHeader, ModalBody, Label, Col, Row  } from 'reactstrap';
 import { NavLink } from 'react-router-dom';
+import { Control, Form, Errors } from 'react-redux-form';
+
+const required = val => val && val.length;
+const maxLength = len => val => !val || (val.length <= len);
+const minLength = len => val => val && (val.length >= len);
 
 
 class Header extends Component {
@@ -49,18 +54,20 @@ class Header extends Component {
         });
     }
 
-    handleLogin(event) {
+    handleLogin(values) {
+        //console.log('Login form values: ' + JSON.stringify(values));
+        //alert('Current contents of Login Form: ' + JSON.stringify(values));
         this.toggleLoginModal();
-        this.props.loginUser({ username: this.username.value, password: this.password.value });
-        event.preventDefault();
-
+        this.props.postLoginForm(values);
+        this.props.resetLoginForm();
     }
 
-    handleNewAccount(event) {
+    handleNewAccount(values) {
+        //console.log('Create Account form values: ' + JSON.stringify(values));
+        //alert('Current contents of Account Form: ' + JSON.stringify(values));
         this.toggleNewAccountModal();
-        this.props.createUser({ username: this.username.value, password: this.password.value, firstname: this.firstname.value, lastname: this.lastname.value });
-        event.preventDefault();
-
+        this.props.postAccountForm(values);
+        this.props.resetAccountForm();
     }
 
     handleLogout() {
@@ -201,26 +208,63 @@ class Header extends Component {
             {/* Modal for user login */}
             <Modal isOpen={this.state.isLoginModalOpen} toggle={this.toggleLoginModal}>
                     <ModalHeader toggle={this.toggleLoginModal}>Login</ModalHeader>
-                    <ModalBody className="modal-frame">
-                        <Form onSubmit={this.handleLogin}>
-                            <FormGroup>
-                                <Label htmlFor="username">Username</Label>
-                                <Input type="text" id="username" name="username"
-                                    innerRef={input => this.username = input} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
-                                    innerRef={input => this.password = input} />
-                            </FormGroup>
-                            <FormGroup check>
-                                <Label check>
-                                    <Input type="checkbox" name="remember"
-                                        innerRef={input => this.remember = input} />
-                                    Remember me
-                                </Label>
-                            </FormGroup>
-                            <Button type="submit" value="submit" color="danger">Login</Button>
+                    <ModalBody className="modal-body">
+                        <Form className="p-sm-2" model="loginForm" onSubmit={values => this.handleLogin(values)}>
+                            <Row className="form-group">
+                                <Label htmlFor="username" md={3}>Username</Label>
+                                <Col md={9}>
+                                    <Control.text model=".username" id="username" name="username"
+                                        placeholder="Username"
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger reason-text"
+                                        model=".username"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="password" md={3}>Password</Label>
+                                <Col md={9}>
+                                    <Control.text model=".password" id="password" name="password" type="password"
+                                        placeholder="Password"
+                                        className="form-control"
+                                        validators={{
+                                            required
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger reason-text"
+                                        model=".password"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <div className="form-check">
+                                    <Label check>
+                                        <Control.checkbox
+                                            model=".remember"
+                                            name="remember"
+                                            className="form-check-input"
+                                        /> 
+                                        Remember me
+                                    </Label>
+                                </div>
+                            </Row>
+                            <Button type="submit" color="danger">Login</Button>
                         </Form>
                     </ModalBody>
                 </Modal>
@@ -228,29 +272,109 @@ class Header extends Component {
                 {/* Modal for user to create a new account */}
                 <Modal isOpen={this.state.isNewAccountModalOpen} toggle={this.toggleNewAccountModal}>
                     <ModalHeader toggle={this.toggleNewAccountModal}>Create an account</ModalHeader>
-                    <ModalBody className="modal-frame">
-                        <Form onSubmit={this.handleNewAccount}>
-                            <FormGroup>
-                                <Label htmlFor="username">Username</Label>
-                                <Input type="text" id="username" name="username"
-                                    innerRef={input => this.username = input} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="password">Password</Label>
-                                <Input type="password" id="password" name="password"
-                                    innerRef={input => this.password = input} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="firstname">First name</Label>
-                                <Input type="text" id="firstname" name="firstname"
-                                    innerRef={input => this.firstname = input} />
-                            </FormGroup>
-                            <FormGroup>
-                                <Label htmlFor="lastname">Last name</Label>
-                                <Input type="lastname" id="lastname" name="lastname"
-                                    innerRef={input => this.lastname = input} />
-                            </FormGroup>
-                            <Button type="submit" value="submit" color="danger">Create Account</Button>
+                    <ModalBody className="modal-body">
+                        <Form className="p-sm-2" model="accountForm" onSubmit={values => this.handleNewAccount(values)}>
+                            <Row className="form-group">
+                                <Label htmlFor="username" md={3}>Username</Label>
+                                <Col md={9}>
+                                    <Control.text model=".username" id="username" name="username"
+                                        placeholder="Username"
+                                        className="form-control"
+                                        validators={{
+                                            required, 
+                                            minLength: minLength(2),
+                                            maxLength: maxLength(15)
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger reason-text"
+                                        model=".username"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Must be at least 2 characters',
+                                            maxLength: 'Must be 15 characters or less'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="password" md={3}>Password</Label>
+                                <Col md={9}>
+                                    <Control.text model=".password" id="password" name="password" type="password"
+                                        placeholder="Password"
+                                        className="form-control"
+                                        validators={{
+                                            required, 
+                                            minLength: minLength(8),
+                                            maxLength: maxLength(32)
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger reason-text"
+                                        model=".password"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Must be at least 8 characters',
+                                            maxLength: 'Must be 32 characters or less'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="firstname" md={3}>First name</Label>
+                                <Col md={9}>
+                                    <Control.text model=".firstname" id="firstname" name="firstname"
+                                        placeholder="First Name"
+                                        className="form-control"
+                                        validators={{
+                                            required, 
+                                            minLength: minLength(2),
+                                            maxLength: maxLength(15)
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger reason-text"
+                                        model=".firstname"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Must be at least 2 characters',
+                                            maxLength: 'Must be 15 characters or less'
+                                        }}
+                                    />
+                                </Col>
+                            </Row>
+                            <Row className="form-group">
+                                <Label htmlFor="lastname" md={3}>Last name</Label>
+                                <Col md={9}>
+                                    <Control.text model=".lastname" id="lastname" name="lastname"
+                                        placeholder="Last Name"
+                                        className="form-control"
+                                        validators={{
+                                            required,
+                                            minLength: minLength(2),
+                                            maxLength: maxLength(15)
+                                        }}
+                                    />
+                                    <Errors
+                                        className="text-danger reason-text"
+                                        model=".lastname"
+                                        show="touched"
+                                        component="div"
+                                        messages={{
+                                            required: 'Required',
+                                            minLength: 'Must be at least 2 characters',
+                                            maxLength: 'Must be 15 characters or less'
+                                        }}
+                                    />
+                                </Col>   
+                            </Row>
+                            <Button type="submit" color="danger">Create Account</Button>
                         </Form>
                     </ModalBody>
                 </Modal>

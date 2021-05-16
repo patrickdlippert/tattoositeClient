@@ -373,11 +373,11 @@ export const postFeedback = feedback => () => {
     .then(response => {
         console.log('Feedback:', response);
         //alert('Thank you for your feedback!\n' + JSON.stringify(response));
-        alert('Thank you for your feedback!');
+        alert('Your message has been sent. Thank you!');
     })
     .catch(error => {
         console.log('Feedback:', error.message);
-        alert('Your feedback could not be posted\nError: ' + error.message);
+        alert('Your message could not be posted\nError: ' + error.message);
     });
 };
 
@@ -404,7 +404,7 @@ export const loginError = message => {
     }
 }
 
-export const loginUser = creds => dispatch => {
+export const postLoginForm= creds => dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     dispatch(requestLogin(creds))
 
@@ -478,7 +478,7 @@ export const createError = message => {
     }
 }
 // Create User Account
-export const createUser = creds => dispatch => {
+export const postAccountForm = (accountform) => dispatch => {
     // We dispatch requestLogin to kickoff the call to the API
     //dispatch(requestLogin(creds))
 
@@ -487,7 +487,7 @@ export const createUser = creds => dispatch => {
         headers: { 
             'Content-Type': 'application/json' 
         },
-        body: JSON.stringify(creds)
+        body: JSON.stringify(accountform)
     })
     .then(response => {
             if (response.ok) {

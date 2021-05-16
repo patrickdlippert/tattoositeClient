@@ -10,7 +10,7 @@ import { Shopping } from './shopping';
 import { Reviews } from './reviews';
 import { Billboards } from './billboards';
 import { Promotions } from './promotions';
-import { InitialFeedback, InitialMatch } from './forms';
+import { InitialLogin, InitialAccount, InitialFeedback, InitialMatch } from './forms';
 import { News } from './news';
 import { Auth } from './auth';
 
@@ -29,7 +29,9 @@ export const ConfigureStore = () => {
             auth: Auth,
             ...createForms({
                 feedbackForm: InitialFeedback,
-                matchForm: InitialMatch
+                matchForm: InitialMatch,
+                loginForm: InitialLogin,
+                accountForm: InitialAccount
             })
         }),
         applyMiddleware(thunk, logger)

@@ -46,7 +46,7 @@ class HomeCarousel extends Component {
 				<CarouselItem
 					onExiting={this.onExiting}
 					onExited={this.onExited}
-					key={item.id}
+					key={item._id}
 				>
 					<img className="d-block w-100" src={baseUrl + item.image} alt={item.altText} />
 					<CarouselCaption captionText={item.caption} captionHeader={item.header} />

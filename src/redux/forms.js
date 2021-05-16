@@ -23,3 +23,16 @@ export const InitialMatch = {
     styleTattoo: '',
     dateAppointment: ''
 };
+
+export const InitialLogin = {
+    username: '',
+    password: '',
+    remember: false,
+};
+
+export const InitialAccount = {
+    username: '',
+    password: '',
+    firstname: '',
+    lastname: ''
+};

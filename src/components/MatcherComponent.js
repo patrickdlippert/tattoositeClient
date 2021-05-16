@@ -389,7 +389,7 @@ class Matcher extends Component {
                                         <option value="4">Extra Large (full back, chest or leg)</option>
                                     </Control.select>
                                     <Errors
-                                        className="text-danger"
+                                        className="text-danger reason-text"
                                         model=".sizeTattoo"
                                         show="touched"
                                         component="div"
@@ -422,7 +422,7 @@ class Matcher extends Component {
                                         <option value="14">Other</option>
                                     </Control.select>
                                     <Errors
-                                        className="text-danger"
+                                        className="text-danger reason-text"
                                         model=".locationTattoo"
                                         show="touched"
                                         component="div"
@@ -454,7 +454,7 @@ class Matcher extends Component {
                                         <option value="14">Other</option>
                                     </Control.select>
                                     <Errors
-                                        className="text-danger"
+                                        className="text-danger reason-text"
                                         model=".themeTattoo"
                                         show="touched"
                                         component="div"
@@ -484,7 +484,7 @@ class Matcher extends Component {
                                         <option value="11">Other</option>
                                     </Control.select>
                                     <Errors
-                                        className="text-danger"
+                                        className="text-danger reason-text"
                                         model=".styleTattoo"
                                         show="touched"
                                         component="div"
@@ -500,7 +500,7 @@ class Matcher extends Component {
                                 <Col>
                                     <Control type="date" model=".dateAppointment" name="dateAppointment"  validators={{required}} />
                                     <Errors
-                                        className="text-danger"
+                                        className="text-danger reason-text"
                                         model=".dateAppointment"
                                         show="touched"
                                         component="div"

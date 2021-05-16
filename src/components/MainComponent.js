@@ -14,7 +14,7 @@ import { Switch, Route, Redirect, withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { actions } from 'react-redux-form';
 import { FAQ } from '../shared/faq';
-import { fetchArtists, fetchGalleries, fetchGalleryImages, fetchPromotions, fetchBillboards, fetchShopping, fetchReviews, fetchNews, postMatchForm, postFeedback, loginUser, logoutUser, createUser } from '../redux/ActionCreators';
+import { fetchArtists, fetchGalleries, fetchGalleryImages, fetchPromotions, fetchBillboards, fetchShopping, fetchReviews, fetchNews, postMatchForm, postFeedback, logoutUser, postLoginForm, postAccountForm} from '../redux/ActionCreators';
 import ScrollToTop from './ScrollToTop';
 
 const mapStateToProps = state => {
@@ -46,9 +46,12 @@ const mapDispatchToProps = {
   resetMatchForm: () => (actions.reset('matchForm')),
   postFeedback: feedback => (postFeedback(feedback)),
   resetFeedbackForm: () => (actions.reset('feedbackForm')),
-  loginUser: creds => (loginUser(creds)),
-  logoutUser: () => (logoutUser()),
-  createUser: creds => (createUser(creds))
+  postLoginForm: (loginForm) => (postLoginForm(loginForm)),
+  resetLoginForm: () => (actions.reset('loginForm')),
+  postAccountForm: (accountForm) => (postAccountForm(accountForm)),
+  resetAccountForm: () => (actions.reset('accountForm')),
+  logoutUser: () => (logoutUser())
+
 };
 
 
@@ -100,6 +103,10 @@ class Main extends Component {
           loginUser={this.props.loginUser} 
           logoutUser={this.props.logoutUser}
           createUser={this.props.createUser}
+          postLoginForm={this.props.postLoginForm} 
+          resetLoginForm={this.props.resetLoginForm}
+          postAccountForm={this.props.postAccountForm} 
+          resetAccountForm={this.props.resetAccountForm}
         />
         <ScrollToTop />
         <Switch>

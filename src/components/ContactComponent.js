@@ -51,7 +51,7 @@ class Contact extends Component {
                                         }}
                                     />
                                     <Errors
-                                        className="text-danger"
+                                        className="text-danger reason-text"
                                         model=".firstName"
                                         show="touched"
                                         component="div"
@@ -76,7 +76,7 @@ class Contact extends Component {
                                         }}
                                     />
                                     <Errors
-                                        className="text-danger"
+                                        className="text-danger reason-text"
                                         model=".lastName"
                                         show="touched"
                                         component="div"
@@ -102,7 +102,7 @@ class Contact extends Component {
                                         }}
                                     />
                                     <Errors
-                                        className="text-danger"
+                                        className="text-danger reason-text"
                                         model=".phoneNum"
                                         show="touched"
                                         component="div"
@@ -127,7 +127,7 @@ class Contact extends Component {
                                         }}
                                     />
                                     <Errors
-                                        className="text-danger"
+                                        className="text-danger reason-text"
                                         model=".email"
                                         show="touched"
                                         component="div"

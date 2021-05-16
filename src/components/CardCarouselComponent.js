@@ -33,7 +33,7 @@ function ConstructCard({resource}) {
 function RenderCards({resources}) {
     const cardslide = resources.map(resource => {
         return (
-            <div key={resource.id} className="col m-1">
+            <div key={resource._id} className="col m-1">
                 <ConstructCard resource={resource} />
             </div>
         );

@@ -22,6 +22,10 @@ form {
     border-radius: 5px;
 }
 
+.modal-body {
+  background-color: #acb5c3;
+}
+
 .auth-group {
   display: flex;
   justify-content: flex-end;

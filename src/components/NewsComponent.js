@@ -38,7 +38,7 @@ function RenderPromotions({promotions}) {
                 <Stagger in>
                     {promotions.map(promotion => {
                         return (
-                            <Fade in key={promotion.id}>
+                            <Fade in key={promotion._id}>
                                 <Card className="card_thumbnail p-1 mb-4">
                                     <CardImg src={baseUrl + promotion.image} alt={promotion.name} title={promotion.description} />
                                     <CardBody className="text-center text-light">
